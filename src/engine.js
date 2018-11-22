@@ -34,6 +34,9 @@ export default class Engine {
     loop(){
 
         // päivitykset tämän alle
+        this.objs.sort(function(a,b) {
+            return a.zIndex - b.zIndex
+        });
 
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
