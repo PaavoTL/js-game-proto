@@ -1,3 +1,5 @@
+import GameObject from "./gameobject";
+
 export default class Engine {
     
     constructor(){
@@ -16,7 +18,17 @@ export default class Engine {
         this.time = new Date().getTime();
         this.dt = (this.time - this.lastTime) / 1000;
 
+        this.objs = [];
+        
         window.requestAnimationFrame(this.loop.bind(this));
+    }
+
+    addObject(obj){
+        if (obj instanceof GameObject){
+            this.objs.push(obj);
+        } else {
+            console.error("Invalid Object. Not GameObject");
+        }
     }
 
     loop(){
@@ -29,9 +41,11 @@ export default class Engine {
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         // piirto tämän alle
+        this.objs.forEach (obj =>{
+            obj.draw(this.ctx);
+        })
 
         this.lastTime = this.time;
         window.requestAnimationFrame(this.loop.bind(this));
-
-    }
+     }
 }
