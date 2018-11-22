@@ -1,0 +1,35 @@
+export default class Engine {
+    
+    constructor(){
+        document.body.style.margin = "0px";
+        document.body.style.overflow = "hidden";
+
+        this.canvas = document.createElement("canvas");
+
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+
+        document.body.appendChild(this.canvas);
+
+        this.ctx = this.canvas.getContext("2d");
+
+        this.time = new Date().getTime();
+        this.dt = (this.time - this.lastTime) / 1000;
+
+        window.requestAnimationFrame(this.loop.bind(this));
+    }
+
+    loop(){
+
+        // päivitykset tämän alle
+
+        this.ctx.fillStyle = "#303030";
+        this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+        // piirto tämän alle
+
+        this.lastTime = this.time;
+        window.requestAnimationFrame(this.loop.bind(this));
+
+    }
+}
