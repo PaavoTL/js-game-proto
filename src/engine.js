@@ -23,6 +23,8 @@ export default class Engine {
 
         // päivitykset tämän alle
 
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
         this.ctx.fillStyle = "#303030";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
