@@ -16,7 +16,7 @@ export default class Engine {
         this.ctx = this.canvas.getContext("2d");
 
         this.time = new Date().getTime();
-        this.dt = (this.time - this.lastTime) / 1000;
+        this.dt = 0;
 
         this.objs = [];
         
@@ -32,10 +32,12 @@ export default class Engine {
     }
 
     loop(){
-
-        console.log();
-
         // päivitykset tämän alle
+        
+        // Delta ajan lasku
+        this.time = new Date().getTime();
+        this.dt = (this.time - this.lastTime) / 1000;
+        this.lastTime = this.time;
 
         // järsestä objectit piirto järjestykseen
         this.objs.sort(function(a,b) {
@@ -52,8 +54,7 @@ export default class Engine {
             obj.draw(this.ctx);
         })
         
-        this.dt = (this.time - this.lastTime) / 1000;
-        this.lastTime = this.time;
+        
         window.requestAnimationFrame(this.loop.bind(this));
      }
 }
