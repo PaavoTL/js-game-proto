@@ -31,6 +31,7 @@ export default class Engine {
         }
     }
 
+
     loop(){
         // päivitykset tämän alle
         
@@ -44,12 +45,15 @@ export default class Engine {
             return a.zIndex - b.zIndex
         });
 
+        // piirto pohjan puhdistaminen
         this.canvas.width = window.innerWidth;
         this.canvas.height = window.innerHeight;
         this.ctx.fillStyle = "#303030";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
         // piirto tämän alle
+
+        // objectien piirto
         this.objs.forEach (obj =>{
             obj.draw(this.ctx);
         })
