@@ -24,8 +24,5 @@ export default class GameObject {
         })
 
         ctx.restore();
-
-        this.position[0] += 0.01;
-        this.position[1] += 0.01;
     }
 }
