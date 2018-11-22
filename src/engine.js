@@ -33,7 +33,11 @@ export default class Engine {
 
     loop(){
 
+        console.log();
+
         // päivitykset tämän alle
+
+        // järsestä objectit piirto järjestykseen
         this.objs.sort(function(a,b) {
             return a.zIndex - b.zIndex
         });
@@ -47,7 +51,8 @@ export default class Engine {
         this.objs.forEach (obj =>{
             obj.draw(this.ctx);
         })
-
+        
+        this.dt = (this.time - this.lastTime) / 1000;
         this.lastTime = this.time;
         window.requestAnimationFrame(this.loop.bind(this));
      }
