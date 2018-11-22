@@ -1,6 +1,6 @@
 export default class GameObject {
     constructor(x=0,y=0,zIndex=0,color = "red"){
-        this.position = [0,0];
+        this.position = [x,y];
         this.zIndex = zIndex;
         this.color = color;
         this.children = [];
