@@ -15,11 +15,11 @@ module.exports = {
   module:{
     rules:[
       {
-        test: /\.(png|jp(e*)g|svg)$/,  
+        test: /\.(png|jpg|gif)$/i,  
         use: [{
           loader: 'url-loader',
           options: { 
-            limit: 8000,
+            limit: 8192,
             name: 'images/[hash]-[name].[ext]'
           } 
         }]
