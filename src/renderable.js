@@ -1,15 +1,18 @@
 import noIMG from './images/noimg.png'
 
 export default class Renderable{
-    constructor(image = noIMG){
+    constructor(image = noIMG, startFrame = 0, frameCount = 0, framesX = 1, framesY = 1, frameSpeed = 0){
         this.img = new Image();
-        this.img.scr = image;
-        this.draw = this.draw.bind(this);
+        this.img.src = image;
+
+        this.startFrame = startFrame;
+        this.frameCount = frameCount;
+        this.framesX = framesX;
+        this.framesY = framesY;
+        this.frameSpeed = frameSpeed;
     }
 
     draw(ctx){
-        ctx.fillStyle = "red";
-        ctx.fillRect(0,0,2,2);
-        ctx.drawImage(this.img, 0,0,64,64);
+        ctx.drawImage(this.img, 0, 0);
     }
 }

@@ -21,7 +21,7 @@ export default class GameObject {
                 child.draw(ctx);
             }
             if(child instanceof Renderable){
-                child.draw(ctx)
+                child.draw(ctx);
             }
         })
 
