@@ -1,7 +1,8 @@
 import noIMG from './images/noimg.png'
 
 export default class Renderable{
-    constructor(image = noIMG, startFrame = 0, frameCount = 0, framesX = 1, framesY = 1, animSpeed = 0 ,size = 1){
+    constructor(image = noIMG, startFrame = 0, frameCount = 0, framesX = 1, framesY = 1, animSpeed = 0 ,size = 1, flip = false){
+        
         this.img = new Image();
         this.img.src = image;
         
@@ -14,12 +15,14 @@ export default class Renderable{
         this.subHeight = this.img.height / framesY;
         this.animSpeed = animSpeed;
         this.size = size;
+        this.flip = flip;
 
         this.animTime = new Date().getTime();
     }
 
     draw(ctx){
-        console.log(this.frame)
+
+        let hc = 0;
 
         let t = new Date().getTime();
         if (t > this.animTime){
@@ -31,10 +34,18 @@ export default class Renderable{
             this.frame = this.startFrame;
         }
 
+        //Handle sprite flipping
+        if (this.flip){
+            ctx.transform(-1, 0, 0, 1 , 0, 0);
+            hc -= this.subWidth * this.size;
+        }else{
+            ctx.transform(1, 0, 0, 1 , 0, 0);
+        }
+
         let posX = (this.frame % this.framesX) * this.subWidth;
         let posY = Math.floor(this.frame / this.framesX) * this.subHeight;
 
         ctx.imageSmoothingEnabled = false;
-        ctx.drawImage(this.img, posX, posY, this.subWidth, this.subHeight, 0, 0, this.subWidth * this.size, this.subHeight * this.size);
+        ctx.drawImage(this.img, posX, posY, this.subWidth, this.subHeight, hc, 0, this.subWidth * this.size, this.subHeight * this.size);
     }
 }

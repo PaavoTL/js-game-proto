@@ -12,6 +12,11 @@ export default class GameObject {
         this.children.push(child);
     }
 
+    translate(x,y){
+        this.position[0] += x;
+        this.position[1] += y;
+    }
+
     draw(ctx){
         ctx.save();
         ctx.translate(this.position[0], this.position[1]);

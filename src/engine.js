@@ -1,4 +1,5 @@
 import GameObject from "./gameobject";
+import Input from "./input";
 
 export default class Engine {
     
@@ -19,6 +20,8 @@ export default class Engine {
         this.dt = 0;
 
         this.objs = [];
+
+        this.input = new Input();
         
         window.requestAnimationFrame(this.loop.bind(this));
     }
@@ -33,12 +36,14 @@ export default class Engine {
 
 
     loop(){
-        // päivitykset tämän alle
         
         // Delta ajan lasku
         this.time = new Date().getTime();
         this.dt = (this.time - this.lastTime) / 1000;
         this.lastTime = this.time;
+
+        // päivitykset tämän alle
+        if(this.update) {this.update(this.dt);}
 
         // järsestä objectit piirto järjestykseen
         this.objs.sort(function(a,b) {
