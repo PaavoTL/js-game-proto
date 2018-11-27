@@ -1,10 +1,9 @@
 import Renderable from "./renderable";
 
 export default class GameObject {
-    constructor(x=0,y=0,zIndex=0,color = "red"){
+    constructor(x=0,y=0,zIndex=0){
         this.position = [x,y];
         this.zIndex = zIndex;
-        this.color = color;
         this.children = [];
     }
 
