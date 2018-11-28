@@ -1,8 +1,6 @@
 import Engine from './engine';
 import GameObject from './gameobject';
 import Renderable from './renderable';
-
-import imgKnight from './images/knight.png'
 import Player from './player';
 
 let engine = new Engine();
